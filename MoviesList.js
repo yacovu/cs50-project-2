@@ -14,7 +14,8 @@ const MoviesList = props => {
 	return (
 		<FlatList
 			renderItem = {renderItem}
- 			data={[{name: "a", date: 2018, genre: "Action", knownActor:"No idea", Rate:5}]}
+ 			data={[{name: "Hunter Killer", date: 2018, genre: "Action", knownActor:" Gerard Butler", Rate:6.9},
+ 					{name: "Casino Royale", date: 2006, genre: "Action", knownActor:" Daniel Craig", Rate:8}]}
 		/>
 	)
 }

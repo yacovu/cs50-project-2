@@ -7,7 +7,7 @@ import MainScreen from './screens/MainScreen.js'
 
 const AppNavigator = createStackNavigator({
     Main: MainScreen,
-    Search: SearchScreen
+    Search: SearchScreen,
   },
   {
     initialRouteName: "Main",
