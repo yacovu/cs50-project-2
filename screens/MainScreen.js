@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
+import MoviesList from '../MoviesList.js'
 
 export default class MainScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
@@ -8,15 +9,10 @@ export default class MainScreen extends React.Component {
     headerRight: <Button title="Search" onPress={() => navigation.navigate("Search")} />,
   });
 
-
-  handleSearchClick = () => {
-    alert("yes")
-  }
-
-
    render() {
     return (
-      <View style={styles.container}>
+      <View>
+         <MoviesList/>
       </View>
     );
   }

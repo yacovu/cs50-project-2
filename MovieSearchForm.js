@@ -33,7 +33,7 @@ state = {
           <TextInput style={styles.input} placeholder={"Release Date"} value={this.state.movieName} keyboardType="numeric" onChangeText={this.getHandler("date")} />
           <TextInput style={styles.input} placeholder={"Genre"} value={this.state.movieName} onChangeText={this.getHandler("genre")} />
           <TextInput style={styles.input} placeholder={"Known Actor"} value={this.state.movieName} onChangeText={this.getHandler("knownActor")} />
-          <TextInput style={styles.input} placeholder={"Rate"} value={this.state.movieName} onChangeText={this.getHandler("rate")} />
+          <TextInput style={styles.input} placeholder={"Rate"} value={this.state.movieName} keyboardType="numeric" onChangeText={this.getHandler("rate")} />
           <Button title={"Search"} onPress={this.handleSearch} />
         </KeyboardAvoidingView>
     );

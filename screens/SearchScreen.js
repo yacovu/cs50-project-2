@@ -5,7 +5,7 @@ import MovieSearchForm from '../MovieSearchForm.js'
 
 export default class SearchScrren extends React.Component {
   static navigationOptions = {
-    heaerTitle: "Search"
+    headerTitle: "Search"
   };
 
 
