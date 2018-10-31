@@ -16,7 +16,7 @@ export default class MainScreen extends React.Component {
          movies={[{name: "Hunter Killer", date: 2018, genre: "Action", knownActor:" Gerard Butler", Rate:6.9},
                   {name: "Casino Royale", date: 2006, genre: "Action", knownActor:" Daniel Craig", Rate:8}
                   ]}
-         onSelectMovie={movie => {this.props.navigation.navigate("MovieDetails",  {name: movie.name,
+         onSelectMovie={(movie) => {alert("here"); this.props.navigation.navigate("MovieDetails",  {name: movie.name,
                                                                                    data: movie.data});
        }}
         />
