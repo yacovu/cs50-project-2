@@ -3,20 +3,20 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 export default class MainScreen extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     headerTitle: "Movies",
-    headerRight: <Button title="Search" onPress={this.handleSearchClick} />
-  };
+    headerRight: <Button title="Search" onPress={() => navigation.navigate("Search")} />,
+  });
+
 
   handleSearchClick = () => {
-
+    alert("yes")
   }
 
 
    render() {
     return (
-      <View>
-        
+      <View style={styles.container}>
       </View>
     );
   }
