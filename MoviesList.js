@@ -4,18 +4,15 @@ import Row from './Row.js'
 
 
 
-// const renderItem = obj => <Row {...obj.item} />
-const renderItem = ({item}) => <Row {...item} />
-
-
-		
+// const renderItem = obj => <Row {...obj.item} />		
 
 const MoviesList = props => {
+	const renderItem = ({item}) => <Row {...item} onSelectMovie={props.onSelectMovie}/>
+
 	return (
 		<FlatList
 			renderItem = {renderItem}
- 			data={[{name: "Hunter Killer", date: 2018, genre: "Action", knownActor:" Gerard Butler", Rate:6.9},
- 					{name: "Casino Royale", date: 2006, genre: "Action", knownActor:" Daniel Craig", Rate:8}]}
+ 			data={props.movies}
 		/>
 	)
 }

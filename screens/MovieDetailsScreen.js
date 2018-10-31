@@ -11,7 +11,7 @@ export default class MovieDetailsScreen extends React.Component {
 	render() {
     return (
       <View>
-         <Text> Movie Details Screen </Text>
+         <Text> {this.props.navigation.getParam("name")} </Text>
       </View>
     );
   }
