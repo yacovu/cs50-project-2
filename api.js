@@ -4,10 +4,8 @@ export const fetchMovies = async (param) => {
       const results = await response.json()
 
       return results
-    
     }
-
     catch(error) {
-      // console.error(error)
+      console.log("error at MainScreen:fetchAdditionalDeatils: " + error)
     }
   }

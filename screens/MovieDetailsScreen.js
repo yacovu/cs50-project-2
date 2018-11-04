@@ -14,7 +14,7 @@ export default class MovieDetailsScreen extends React.Component {
     return (
       <View>
          <Image source={{uri: "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg"}} />
-         <Text style={styles.textTitle}> {movie.Title} </Text>
+         <Text style={styles.textTitle}>{movie.Title} </Text>
          <Text style={styles.textYear}> ({movie.Year}) {"\n"} </Text>
          <Text> {movie.Rated}, {movie.Runtime} {"\n"} </Text>
          <Text> {movie.Plot} {"\n"} </Text>

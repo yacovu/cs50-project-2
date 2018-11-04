@@ -18,22 +18,22 @@ export default class MainScreen extends React.Component {
     await this.setState({input})
     const result = null
 
-    if (+this.state.input) {
-      results = await fetchMovies("y=" + this.state.input)
-    }
-    else {
-      results = await fetchMovies("s=" + this.state.input)
-    }
+    results = await fetchMovies("s=" + this.state.input)
     await this.setState({movies: results})
     await this.fetchAdditionalDeatils()
   }
 
   fetchAdditionalDeatils = async () => {
-    this.state.movies.Search.map(async movie => {
-      const imdbID = movie.imdbID
-      const results = await fetchMovies("i=" + imdbID)
-      await this.setState(prevState => ({additionalDetails: [...prevState.additionalDetails, results]}))
-    }) 
+    try{
+      this.state.movies.Search.map(async movie => {
+        const imdbID = movie.imdbID
+        const results = await fetchMovies("i=" + imdbID)
+        await this.setState(prevState => ({additionalDetails: [...prevState.additionalDetails, results]}))
+      }) 
+    }
+    catch (error) {
+      console.log("error at MainScreen:fetchAdditionalDeatils: " + error)
+    }
   }
 
   render() {
