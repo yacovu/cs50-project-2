@@ -8,8 +8,7 @@ import MovieDetailsScreen from './screens/MovieDetailsScreen.js'
 
 const AppNavigator = createStackNavigator({
     Main: MainScreen,
-    Search: SearchScreen,
-    MovieDetails: MovieDetailsScreen,
+    MovieDetails: MovieDetailsScreen
   },
   {
     initialRouteName: "Main",
@@ -18,7 +17,19 @@ const AppNavigator = createStackNavigator({
 
 
 export default class App extends React.Component {
+  // state = {
+  //   movies: null
+  // }
+
+  // componentDidMount() {
+  //   this.getMovies()
+  // }
   
+  // getMovies = async (param) => {
+  //   const results = await fetchMovies()
+  //   this.setState({movies: results})
+  //   console.log(this.state.movies)
+  // }
 
 
 
@@ -38,4 +49,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
 });

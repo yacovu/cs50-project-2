@@ -1,13 +1,17 @@
 import React from 'react'
-import {Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import {Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 
- const Row = props => (
- 	<TouchableOpacity onPress={() => {props.onSelectMovie}}>
-		 <View>
-	   		 <Text> {props.name}</Text>
+ const Row = props => {
+console.log("props at row")
+console.log(props)
+ 	return(
+ 	<TouchableOpacity onPress={() => props.onSelectMovie(props)}>
+		 <View>		 	 
+	   		 <Text> {props.Title}</Text>
+	   		 <Text> {props.Year} ({props.Type}) {"\n"}</Text>
 		 </View>
 	 </TouchableOpacity>
-)
+)}
 
 
  const styles = StyleSheet.create({
