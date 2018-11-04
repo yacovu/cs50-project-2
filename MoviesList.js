@@ -10,6 +10,7 @@ const MoviesList = props => {
 			<FlatList
 				renderItem = {renderItem}
 	 			data={props.movies}
+	 			keyExtractor={(item, index) => index.toString()}
 			/>
 		)
 	}

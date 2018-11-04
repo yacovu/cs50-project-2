@@ -18,9 +18,7 @@ export default class MainScreen extends React.Component {
     await this.setState({input})
     await this.setState({additionalDetails: []})
     const result = null
-
-  
-
+    
     pageNumber = 1
     results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
 
