@@ -4,14 +4,13 @@ import {Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
  const Row = props => {
  	return(
  	<TouchableOpacity onPress={() => props.onSelectMovie(props)}>
-		 <View style={styles.yearText}>					 
-	   		 <Text  > 
+		 <View>	
+		 	<View style={styles.inline} >				 
+	   		 
 	   		   <Image source={{uri:props.Poster}}
 	                  style={styles.image}/> 		        
-	   		  {props.Title} {"\n"}
-	   		  <Text> {props.Year} ({props.Type}) {"\n"} </Text>
-	   		  </Text>
-	   		 
+	   		  <Text> {props.Title} {"\n"} {props.Year} ({props.Type}) {"\n"} </Text>	   		  
+	   		</View>	   		 
 		 </View>
 	 </TouchableOpacity>
 )}
@@ -20,18 +19,11 @@ import {Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 
 
  var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
-    marginTop: 40,
-    marginHorizontal: 10,
-  },
   image: {
-    width: 30,
-    height: 30,
-    // flexDirection: 'row'
+    width: 40,
+    height: 40,
   },
-  yearText: {
+  inline: {
   flexDirection: 'row'
   }
 });
