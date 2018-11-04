@@ -6,16 +6,14 @@ export default class MovieDetailsScreen extends React.Component {
       headerTitle: navigation.getParam("movie").Title,
     });
 
-	render() {
-    console.log("params at Moviedetails render:")
-    console.log(this.props.navigation.getParam("movie"))
+	render() {    
     const movie = this.props.navigation.getParam("movie")
-    console.log(movie.Poster)
+        
     return (
       <View>
 
         <Image source={{uri:movie.Poster}}
-               style={{width: 400, height: 400}} 
+               style={styles.image} 
         />      
          <Text style={styles.textTitle}>{movie.Title} </Text>
          <Text style={styles.textYear}> ({movie.Year}) {"\n"} </Text>
@@ -34,6 +32,10 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 25, 
     fontWeight: 'bold'
+  },
+  image: {
+    width: 400,
+    height: 400,
   },
   textYear: {
     textAlign:'right'

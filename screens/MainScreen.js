@@ -23,8 +23,6 @@ export default class MainScreen extends React.Component {
 
     pageNumber = 1
     results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
-      console.log("results: ")
-    console.log(results)
 
       if (results.Response === "True"){
         while (results.Response === "True") {
@@ -37,9 +35,6 @@ export default class MainScreen extends React.Component {
   }
 
   fetchAdditionalDeatils = async () => {
-       console.log("additionalDetails: ")
-    console.log(this.state.additionalDetails)
-
     try{
       if (this.state.movies.Response === "True") {
         this.state.movies.Search.map(async movie => {

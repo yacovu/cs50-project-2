@@ -5,10 +5,7 @@ import Row from './Row.js'
 
 const MoviesList = props => {
 	const renderItem = ({item}) => <Row {...item} onSelectMovie={props.onSelectMovie} {...item.key}/> 
-	// console.log("props.movies : ")
-		// console.log(props.movies)
 	if (props.movies && props.movies.length > 0) {
-
 		return (
 			<FlatList
 				renderItem = {renderItem}
