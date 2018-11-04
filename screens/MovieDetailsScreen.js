@@ -6,14 +6,6 @@ export default class MovieDetailsScreen extends React.Component {
       headerTitle: navigation.getParam("movie").Title,
     });
 
-
-
-	// static navigationOptions = ({navigation}) => {
-
-	// 	//TODO: change from Movie details to ${Movie Name} Details
-	//     headerTitle: "Movie Details",
- // 	 }
-
 	render() {
     console.log("params at Moviedetails render:")
     console.log(this.props.navigation.getParam("movie"))

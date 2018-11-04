@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import {Text, View, TouchableOpacity, Image } from 'react-native'
 
  const Row = props => {
 console.log("props at row")
@@ -12,15 +12,5 @@ console.log(props)
 		 </View>
 	 </TouchableOpacity>
 )}
-
-
- const styles = StyleSheet.create({
-	  container: {
-	    flex: 1,
-	    justifyContent: 'center',
-	    alignItems: 'center',
-	    backgroundColor: '#F5FCFF',
-	  },
-  });
 
  export default Row 

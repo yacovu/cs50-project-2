@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import SearchScreen from './screens/SearchScreen.js'
 import MainScreen from './screens/MainScreen.js'
 import MovieDetailsScreen from './screens/MovieDetailsScreen.js'
 
@@ -17,21 +16,6 @@ const AppNavigator = createStackNavigator({
 
 
 export default class App extends React.Component {
-  // state = {
-  //   movies: null
-  // }
-
-  // componentDidMount() {
-  //   this.getMovies()
-  // }
-  
-  // getMovies = async (param) => {
-  //   const results = await fetchMovies()
-  //   this.setState({movies: results})
-  //   console.log(this.state.movies)
-  // }
-
-
 
   render() {
     return (
@@ -41,13 +25,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-});
