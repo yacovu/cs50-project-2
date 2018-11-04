@@ -18,18 +18,18 @@ export default class MainScreen extends React.Component {
     await this.setState({input})
     await this.setState({additionalDetails: []})
     const result = null
-    
+
     pageNumber = 1
     results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
 
-      if (results.Response === "True"){
-        while (results.Response === "True") {
-          await this.setState({movies: results})
-          await this.fetchAdditionalDeatils()
-          pageNumber = await pageNumber + 1
-          results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
-        }
-      }
+      
+    while (results.Response === "True") {
+      await this.setState({movies: results})
+      await this.fetchAdditionalDeatils()
+      pageNumber = await pageNumber + 1
+      results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
+    }
+      
   }
 
   fetchAdditionalDeatils = async () => {
