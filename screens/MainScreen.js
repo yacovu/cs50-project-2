@@ -10,35 +10,33 @@ export default class MainScreen extends React.Component {
 
   state = {
     input: null,
-    movies: [],
-    additionalDetails: [],
+    movieList: [],
+    detailedMovieList: [],
   }
 
   handleSearchInputChange = async input => {
     await this.setState({input})
-    await this.setState({additionalDetails: []})
+    await this.setState({detailedMovieList: []})
     const result = null
 
     pageNumber = 1
     results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
-
       
     while (results.Response === "True") {
-      await this.setState({movies: results})
+      await this.setState({movieList: results})
       await this.fetchAdditionalDeatils()
       pageNumber = await pageNumber + 1
       results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
-    }
-      
+    }      
   }
 
   fetchAdditionalDeatils = async () => {
     try{
-      if (this.state.movies.Response === "True") {
-        this.state.movies.Search.map(async movie => {
+      if (this.state.movieList.Response === "True") {
+        this.state.movieList.Search.map(async movie => {
           const imdbID = movie.imdbID
           const results = await fetchMovies("i=" + imdbID)
-          await this.setState(prevState => ({additionalDetails: [...prevState.additionalDetails, results]}))
+          await this.setState(prevState => ({detailedMovieList: [...prevState.detailedMovieList, results]}))
         })
       }
     }
@@ -52,9 +50,9 @@ export default class MainScreen extends React.Component {
       <View>
          <TextInput style={styles.input} placeholder={"Search..."} value={this.state.input} onChangeText={this.handleSearchInputChange} />
            <MoviesList
-             movies={this.state.additionalDetails}
+             movies={this.state.detailedMovieList}
              onSelectMovie={selectedMovie => {
-              this.state.additionalDetails.map(movie => {
+              this.state.detailedMovieList.map(movie => {
                 if (selectedMovie.Title === movie.Title) {
                   this.props.navigation.navigate("MovieDetails",{movie})
                 }
