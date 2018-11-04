@@ -10,7 +10,7 @@ export default class MainScreen extends React.Component {
 
   state = {
     input: null,
-    movies: null,
+    movies: [],
     additionalDetails: [],
   }
 
@@ -18,18 +18,48 @@ export default class MainScreen extends React.Component {
     await this.setState({input})
     const result = null
 
-    results = await fetchMovies("s=" + this.state.input)
+    //TODO: loop
+    pageNumber = 1
+
+    results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
+
+    // await this.setState(prevState => ({movies: [...prevState.movies, results]}))
     await this.setState({movies: results})
     await this.fetchAdditionalDeatils()
   }
 
   fetchAdditionalDeatils = async () => {
     try{
-      this.state.movies.Search.map(async movie => {
-        const imdbID = movie.imdbID
-        const results = await fetchMovies("i=" + imdbID)
-        await this.setState(prevState => ({additionalDetails: [...prevState.additionalDetails, results]}))
-      }) 
+      console.log("movies: ")
+      console.log(this.state.movies)
+
+      if (this.state.movies.Response === "True") {
+        this.state.movies.Search.map(async movie => {
+          const imdbID = movie.imdbID
+          const results = await fetchMovies("i=" + imdbID)
+          await this.setState(prevState => ({additionalDetails: [...prevState.additionalDetails, results]}))
+        })
+      }
+      else {
+        this.setState(prevState => ({additionalDetails: []}))
+      }
+
+      // this.state.movies.map(searchResult => {
+      //   if (searchResult.Response === "True") {
+      //     searchResult.Search.map(async movie => {
+      //     const imdbID = movie.imdbID
+      //     const results = await fetchMovies("i=" + imdbID)
+      //     await this.setState(prevState => ({additionalDetails: [...prevState.additionalDetails, results]}))
+      //   })
+      //   }       
+      // })
+
+
+      // this.state.movies.Search.map(async movie => {
+      //   const imdbID = movie.imdbID
+      //   const results = await fetchMovies("i=" + imdbID)
+      //   await this.setState(prevState => ({additionalDetails: [...prevState.additionalDetails, results]}))
+      // }) 
     }
     catch (error) {
       console.log("error at MainScreen:fetchAdditionalDeatils: " + error)
@@ -37,11 +67,15 @@ export default class MainScreen extends React.Component {
   }
 
   render() {
+    console.log("movies : ")
+    console.log(this.state.movies)
+        console.log("additionalDetails : ")
+    console.log(this.state.additionalDetails)
     return (
       <View>
          <TextInput style={styles.input} placeholder={"Search..."} value={this.state.input} onChangeText={this.handleSearchInputChange} />
            <MoviesList
-             movies={this.state.movies}
+             movies={this.state.additionalDetails}
              onSelectMovie={selectedMovie => {
               this.state.additionalDetails.map(movie => {
                 if (selectedMovie.Title === movie.Title) {

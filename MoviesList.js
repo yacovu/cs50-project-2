@@ -5,13 +5,14 @@ import Row from './Row.js'
 
 const MoviesList = props => {
 	const renderItem = ({item}) => <Row {...item} onSelectMovie={props.onSelectMovie}/>
-	const arr = [props.movies]
-	
-	if (props.movies && props.movies.Response === "True") {
+	console.log("props.movies : ")
+		console.log(props.movies)
+	if (props.movies) {
+
 		return (
 			<FlatList
 				renderItem = {renderItem}
-	 			data={props.movies.Search}
+	 			data={props.movies}
 			/>
 		)
 	}
