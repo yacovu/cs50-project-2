@@ -5,8 +5,8 @@ import Row from './Row.js'
 
 const MoviesList = props => {
 	const renderItem = ({item}) => <Row {...item} onSelectMovie={props.onSelectMovie}/>
-	console.log("props.movies : ")
-		console.log(props.movies)
+	// console.log("props.movies : ")
+		// console.log(props.movies)
 	if (props.movies) {
 
 		return (
