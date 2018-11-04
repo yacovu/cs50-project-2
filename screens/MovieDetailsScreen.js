@@ -15,10 +15,8 @@ export default class MovieDetailsScreen extends React.Component {
       <View>
 
         <Image source={{uri:movie.Poster}}
-       style={{width: 400, height: 400}} />
-
-         
-
+               style={{width: 400, height: 400}} 
+        />      
          <Text style={styles.textTitle}>{movie.Title} </Text>
          <Text style={styles.textYear}> ({movie.Year}) {"\n"} </Text>
          <Text> {movie.Rated}, {movie.Runtime} {"\n"} </Text>
