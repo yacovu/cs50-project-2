@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import MoviesList from '../MoviesList.js'
 import {fetchMovies} from '../api.js'
+import {fetchMovieByImdbID} from '../api.js'
 
 export default class MainScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
@@ -16,16 +17,16 @@ export default class MainScreen extends React.Component {
 
   handleSearchInputChange = async input => {
     await this.setState({input})
-    await this.setState({detailedMovieList: []})
+    this.setState({detailedMovieList: []})
         
     
     pageNumber = 1
     moviesList = []
-    results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
+    results = await fetchMovies(this.state.input, pageNumber)
     while (results.Response === "True") {
       moviesList = [...moviesList, ...results.Search]         
       pageNumber = await pageNumber + 1
-      results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
+      results = await fetchMovies(this.state.input, pageNumber)
     } 
     this.setState({moviesToBeShownInHomeScreen: moviesList})
   }
@@ -33,7 +34,7 @@ export default class MainScreen extends React.Component {
   fetchAdditionalDeatils = async (movie) => {
     try{
       const imdbID = movie.imdbID
-      const result = await fetchMovies("i=" + imdbID)
+      const result = await fetchMovieByImdbID(imdbID)
       return result
     }
     catch (error) {
