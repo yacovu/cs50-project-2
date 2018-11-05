@@ -12,12 +12,10 @@ export default class MainScreen extends React.Component {
   state = {
     moviesToBeShownInHomeScreen: null,
     input: null,
-    detailedMovieList: [],
   }
 
   handleSearchInputChange = async input => {
     await this.setState({input})
-    this.setState({detailedMovieList: []})
         
     
     pageNumber = 1
