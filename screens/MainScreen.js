@@ -9,6 +9,7 @@ export default class MainScreen extends React.Component {
   });
 
   state = {
+    moviesToBeShownInHomeScreen: null,
     input: null,
     detailedMovieList: [],
   }
@@ -17,28 +18,23 @@ export default class MainScreen extends React.Component {
     await this.setState({input})
     await this.setState({detailedMovieList: []})
         
-    movieList = []
+    
     pageNumber = 1
+    moviesList = []
     results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
-
     while (results.Response === "True") {
-      additionalDeatils = await this.fetchAdditionalDeatils(results)
-      movieList = [...movieList, ...additionalDeatils] 
+      moviesList = [...moviesList, ...results.Search]         
       pageNumber = await pageNumber + 1
       results = await fetchMovies("s=" + this.state.input + "&page=" + pageNumber)
     } 
-    await this.setState({detailedMovieList: movieList})
+    this.setState({moviesToBeShownInHomeScreen: moviesList})
   }
 
-  fetchAdditionalDeatils = async (movieList) => {
+  fetchAdditionalDeatils = async (movie) => {
     try{
-
-      return await Promise.all(
-        movieList.Search.map(async movie => {
-        const imdbID = movie.imdbID
-        const results = await fetchMovies("i=" + imdbID)
-        return results
-        }))     
+      const imdbID = movie.imdbID
+      const result = await fetchMovies("i=" + imdbID)
+      return result
     }
     catch (error) {
       console.log("error at MainScreen:fetchAdditionalDeatils: " + error)
@@ -51,13 +47,12 @@ export default class MainScreen extends React.Component {
       <View>
          <TextInput style={styles.input} placeholder={"Search..."} value={this.state.input} onChangeText={this.handleSearchInputChange} />
            <MoviesList
-             movies={this.state.detailedMovieList}
+             movies={this.state.moviesToBeShownInHomeScreen}
              onSelectMovie={selectedMovie => {
-              this.state.detailedMovieList.map(movie => {
-                if (selectedMovie.Title === movie.Title) {
-                  this.props.navigation.navigate("MovieDetails",{movie})
-                }
-              })
+              this.fetchAdditionalDeatils(selectedMovie)
+              .then( movie => {
+                this.props.navigation.navigate("MovieDetails", {movie})
+                })
             }
           }
          />         
