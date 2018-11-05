@@ -15,16 +15,15 @@ export default class MainScreen extends React.Component {
   }
 
   handleSearchInputChange = async input => {
-    await this.setState({input})
-        
+    this.setState({input})        
     
     pageNumber = 1
     moviesList = []
-    results = await fetchMovies(this.state.input, pageNumber)
+    results = await fetchMovies(input, pageNumber)
     while (results.Response === "True") {
       moviesList = [...moviesList, ...results.Search]         
       pageNumber = await pageNumber + 1
-      results = await fetchMovies(this.state.input, pageNumber)
+      results = await fetchMovies(input, pageNumber)
     } 
     this.setState({moviesToBeShownInHomeScreen: moviesList})
   }
